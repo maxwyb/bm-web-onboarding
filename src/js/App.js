@@ -10,5 +10,7 @@ export default () => (
         <Button primary>Hello world!</Button>
         <Button>Deactivated Button</Button>
         <LogInButton override='signup' isLoggedIn={false} />
+        <LogInButton isLoggedIn={true} />
+        <LogInButton />
     </div>
 )
