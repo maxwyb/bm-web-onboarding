@@ -1,27 +1,37 @@
+// @flow
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-type Props = {
-    isLoggedIn: boolean
+import Button from './Button';
+
+type ButtonType = 'login' | 'logout' | 'signup';
+type PropsType = {
+    isLoggedIn: boolean,
+    override?: ButtonType,
 };
 
-const LogInButtonRaw = (props: Props) => (
-    <button className={props.className} onClick={() => { window.alert("LogInButton clicked.") }}>
-        { props.override ?  props.override : (props.isLoggedIn ? "Log Out" : "Log In") }
-        { props.children }
-    </button>
-);
+function LogInButton(props: PropsType) {
 
-const LogInButton = styled(LogInButtonRaw)`
-    background: #679AEC;
-    margin-left: 1em;
-    letter-spacing: 1px;
-    font-size: 1.25em;
-    color: white;
-    border-radius: 10px;
-    height: 50px;
-`;
+    const alertAction = () => {
+        if (props.override) {
+            window.alert("LogInButton text overridden: " + props.override);
+        } else {
+            window.alert(props.isLoggedIn ? "Logging Out Now" : "Logging In Now");
+        }
+    }
+
+    return (
+        <Button primary onClick={ alertAction }>
+            { props.override ? props.override : (props.isLoggedIn ? "Log Out" : "Log In") }
+        </Button>
+    )
+}
+
+LogInButton.defaultProps = {
+    isLoggedIn: false
+}
 
 export default LogInButton;
 
@@ -40,4 +50,16 @@ const LogInButtonRaw = ({ isLoggedIn, override, className, children }) => (
         { children }
     </button>
 );
+*/
+
+/*
+const LogInButton = styled(LogInButtonRaw)`
+    background: #679AEC;
+    margin-left: 1em;
+    letter-spacing: 1px;
+    font-size: 1.25em;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+`;
 */
